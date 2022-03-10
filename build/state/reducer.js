@@ -45,6 +45,10 @@ exports.mainStateReducer = function (state, action) {
             var prevDocumentNo = state.currentFileNo - 1;
             return __assign(__assign({}, state), { currentFileNo: state.currentFileNo - 1, currentDocument: state.documents[prevDocumentNo], documentLoading: true });
         }
+        case actions_1.SET_CURRENT_DOCUMENT: {
+            var selectedDocumentNo = action.index;
+            return __assign(__assign({}, state), { currentFileNo: selectedDocumentNo, currentDocument: state.documents[selectedDocumentNo], documentLoading: true });
+        }
         case actions_1.UPDATE_CURRENT_DOCUMENT: {
             var document_1 = action.document;
             return __assign(__assign({}, state), { currentDocument: document_1 });

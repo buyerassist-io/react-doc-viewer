@@ -34,18 +34,23 @@ exports.AppProvider = exports.DocViewerContext = void 0;
 var react_1 = __importStar(require("react"));
 var actions_1 = require("./actions");
 var reducer_1 = require("./reducer");
-var DocViewerContext = react_1.createContext({ state: reducer_1.initialState, dispatch: function () { return null; } });
+var DocViewerContext = react_1.createContext({
+    state: reducer_1.initialState,
+    dispatch: function () { return null; },
+    setSelectedDocumentNo: function () { return null; },
+});
 exports.DocViewerContext = DocViewerContext;
 var AppProvider = function (props) {
-    var children = props.children, documents = props.documents, config = props.config, pluginRenderers = props.pluginRenderers;
-    var _a = react_1.useReducer(reducer_1.mainStateReducer, __assign(__assign({}, reducer_1.initialState), { documents: documents || [], currentDocument: documents && documents.length ? documents[0] : undefined, config: config,
+    var children = props.children, documents = props.documents, config = props.config, pluginRenderers = props.pluginRenderers, currentDocumentNo = props.currentDocumentNo, setSelectedDocumentNo = props.setSelectedDocumentNo;
+    var _a = react_1.useReducer(reducer_1.mainStateReducer, __assign(__assign({}, reducer_1.initialState), { documents: documents || [], currentDocument: documents && documents.length ? documents[currentDocumentNo] : undefined, currentFileNo: currentDocumentNo, config: config,
         pluginRenderers: pluginRenderers })), state = _a[0], dispatch = _a[1];
     // On inital load, and whenever they change,
     // replace documents with the new props passed in
     react_1.useEffect(function () {
         dispatch(actions_1.setAllDocuments(documents));
+        dispatch(actions_1.setCurrentDocument(currentDocumentNo));
         config && dispatch(actions_1.setMainConfig(config));
     }, [documents]);
-    return (react_1.default.createElement(DocViewerContext.Provider, { value: { state: state, dispatch: dispatch } }, children));
+    return (react_1.default.createElement(DocViewerContext.Provider, { value: { state: state, dispatch: dispatch, setSelectedDocumentNo: setSelectedDocumentNo } }, children));
 };
 exports.AppProvider = AppProvider;

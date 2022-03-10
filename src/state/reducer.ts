@@ -1,19 +1,21 @@
-import { DocRenderer, IConfig, IDocument } from "../types";
+import { DocRenderer, IConfig, IDocument } from '../types';
 import {
   MainStateActions,
   NEXT_DOCUMENT,
   PREVIOUS_DOCUMENT,
   SetAllDocuments,
+  SetCurrentDocument,
   SetDocumentLoading,
   SetMainConfig,
   SetRendererRect,
   SET_ALL_DOCUMENTS,
+  SET_CURRENT_DOCUMENT,
   SET_DOCUMENT_LOADING,
   SET_MAIN_CONFIG,
   SET_RENDERER_RECT,
   UpdateCurrentDocument,
   UPDATE_CURRENT_DOCUMENT,
-} from "./actions";
+} from './actions';
 
 export type IMainState = {
   currentFileNo: number;
@@ -75,6 +77,16 @@ export const mainStateReducer: MainStateReducer = (
         ...state,
         currentFileNo: state.currentFileNo - 1,
         currentDocument: state.documents[prevDocumentNo],
+        documentLoading: true,
+      };
+    }
+
+    case SET_CURRENT_DOCUMENT: {
+      const selectedDocumentNo = (action as SetCurrentDocument).index;
+      return {
+        ...state,
+        currentFileNo: selectedDocumentNo,
+        currentDocument: state.documents[selectedDocumentNo],
         documentLoading: true,
       };
     }

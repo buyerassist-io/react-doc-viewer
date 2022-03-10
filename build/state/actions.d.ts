@@ -1,4 +1,4 @@
-import { IConfig, IDocument } from "../types";
+import { IConfig, IDocument } from '../types';
 export declare const SET_ALL_DOCUMENTS: string;
 export interface SetAllDocuments {
     type: typeof SET_ALL_DOCUMENTS;
@@ -39,4 +39,13 @@ export interface SetMainConfig {
     config: IConfig;
 }
 export declare const setMainConfig: (config: IConfig) => SetMainConfig;
-export declare type MainStateActions = SetAllDocuments | SetDocumentLoading | NextDocument | PreviousDocument | UpdateCurrentDocument | SetRendererRect | SetMainConfig;
+export declare const SET_CURRENT_DOCUMENT: string;
+export interface SetCurrentDocument {
+    type: typeof SET_CURRENT_DOCUMENT;
+    index: number;
+}
+export declare const setCurrentDocument: (index: number) => {
+    type: string;
+    index: number;
+};
+export declare type MainStateActions = SetAllDocuments | SetDocumentLoading | NextDocument | PreviousDocument | UpdateCurrentDocument | SetRendererRect | SetMainConfig | SetCurrentDocument;

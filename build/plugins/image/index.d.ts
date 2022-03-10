@@ -1,3 +1,3 @@
-import { DocRenderer } from "../../types";
+import { DocRenderer } from '../../types';
 declare const ImageProxyRenderer: DocRenderer;
 export default ImageProxyRenderer;

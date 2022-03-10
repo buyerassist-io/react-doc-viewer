@@ -21,10 +21,10 @@ var useRendererSelector_1 = require("./useRendererSelector");
  * Custom Hook for loading the current document into context
  */
 exports.useDocumentLoader = function () {
-    var _a = react_1.useContext(state_1.DocViewerContext), state = _a.state, dispatch = _a.dispatch;
+    var _a = react_1.useContext(state_1.DocViewerContext), state = _a.state, dispatch = _a.dispatch, setSelectedDocumentNo = _a.setSelectedDocumentNo;
     var currentFileNo = state.currentFileNo, currentDocument = state.currentDocument;
     var CurrentRenderer = useRendererSelector_1.useRendererSelector().CurrentRenderer;
-    var documentURI = (currentDocument === null || currentDocument === void 0 ? void 0 : currentDocument.uri) || "";
+    var documentURI = (currentDocument === null || currentDocument === void 0 ? void 0 : currentDocument.uri) || '';
     react_1.useEffect(function () {
         if (!currentDocument)
             return;
@@ -32,9 +32,9 @@ exports.useDocumentLoader = function () {
             return;
         var controller = new AbortController();
         var signal = controller.signal;
-        fetch(documentURI, { method: "HEAD", signal: signal }).then(function (response) {
-            var contentTypeRaw = response.headers.get("content-type");
-            var contentTypes = (contentTypeRaw === null || contentTypeRaw === void 0 ? void 0 : contentTypeRaw.split(";")) || [];
+        fetch(documentURI, { method: 'HEAD', signal: signal }).then(function (response) {
+            var contentTypeRaw = response.headers.get('content-type');
+            var contentTypes = (contentTypeRaw === null || contentTypeRaw === void 0 ? void 0 : contentTypeRaw.split(';')) || [];
             var contentType = contentTypes.length ? contentTypes[0] : undefined;
             dispatch(actions_1.updateCurrentDocument(__assign(__assign({}, currentDocument), { fileType: contentType || undefined })));
         });
@@ -77,5 +77,5 @@ exports.useDocumentLoader = function () {
             controller.abort();
         };
     }, [CurrentRenderer]);
-    return { state: state, dispatch: dispatch, CurrentRenderer: CurrentRenderer };
+    return { state: state, dispatch: dispatch, CurrentRenderer: CurrentRenderer, setSelectedDocumentNo: setSelectedDocumentNo };
 };
