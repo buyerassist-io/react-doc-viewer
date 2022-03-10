@@ -43,7 +43,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TXTRenderer = exports.TIFFRenderer = exports.PNGRenderer = exports.PDFRenderer = exports.MSGRenderer = exports.MSDocRenderer = exports.JPGRenderer = exports.ImageProxyRenderer = exports.HTMLRenderer = exports.BMPRenderer = void 0;
 var react_1 = __importDefault(require("react"));
 var styled_components_1 = __importStar(require("styled-components"));
-var HeaderBar_1 = require("./components/HeaderBar");
 var ProxyRenderer_1 = require("./components/ProxyRenderer");
 var bmp_1 = __importDefault(require("./plugins/bmp"));
 exports.BMPRenderer = bmp_1.default;
@@ -70,16 +69,15 @@ var theme_1 = require("./theme");
 var DocViewer = function (props) {
     var documents = props.documents, theme = props.theme;
     if (!documents || documents === undefined) {
-        throw new Error("Please provide an array of documents to DocViewer.\ne.g. <DocViewer documents={[ { uri: 'https://mypdf.pdf' } ]} />");
+        throw new Error("Please provide an array to DocViewer.\ne.g. <DocViewer documents={[ { uri: 'https://mypdf.pdf' } ]} />");
     }
     return (react_1.default.createElement(state_1.AppProvider, __assign({}, props),
         react_1.default.createElement(styled_components_1.ThemeProvider, { theme: theme ? __assign(__assign({}, theme_1.defaultTheme), theme) : theme_1.defaultTheme },
             react_1.default.createElement(Container, __assign({ id: "react-doc-viewer", "data-testid": "react-doc-viewer" }, props),
-                react_1.default.createElement(HeaderBar_1.HeaderBar, null),
                 react_1.default.createElement(ProxyRenderer_1.ProxyRenderer, null)))));
 };
 exports.default = DocViewer;
-var Container = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  background: #eee;\n"], ["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  background: #eee;\n"])));
+var Container = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  background: transparent;\n"], ["\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  background: transparent;\n"])));
 var plugins_1 = require("./plugins");
 Object.defineProperty(exports, "DocViewerRenderers", { enumerable: true, get: function () { return plugins_1.DocViewerRenderers; } });
 __exportStar(require("./types"), exports);

@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { DocRenderer } from "../../types";
+import React from 'react';
+import styled from 'styled-components';
+import { DocRenderer } from '../../types';
 
 const ImageProxyRenderer: DocRenderer = (props) => {
   const {
@@ -31,7 +31,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background: transparent;
 `;
 
 const Img = styled.img`

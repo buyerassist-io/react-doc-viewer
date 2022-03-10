@@ -38,8 +38,8 @@ exports.DocumentNav = function () {
     if (documents.length <= 1 || !currentDocument)
         return null;
     var fileName = currentDocument.uri;
-    var splitURL = fileName.split("/");
-    if (splitURL.length) {
+    var splitURL = fileName === null || fileName === void 0 ? void 0 : fileName.split('/');
+    if (splitURL === null || splitURL === void 0 ? void 0 : splitURL.length) {
         fileName = splitURL[splitURL.length - 1];
     }
     return (react_1.default.createElement(Container, { id: "doc-nav" },

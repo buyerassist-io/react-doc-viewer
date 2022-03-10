@@ -1,4 +1,4 @@
-import { IStyledProps } from "../../types";
+import { IStyledProps } from '../../types';
 interface ButtonProps extends IStyledProps {
     disabled?: boolean;
 }

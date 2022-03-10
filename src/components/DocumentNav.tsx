@@ -1,10 +1,10 @@
-import React, { FC, useContext } from "react";
-import styled from "styled-components";
-import { DocViewerContext } from "../state";
-import { nextDocument, previousDocument } from "../state/actions";
-import { IStyledProps } from "../types";
-import { ButtonSecondary } from "./common/Button";
-import { NextDocIcon, PrevDocIcon } from "./icons";
+import React, { FC, useContext } from 'react';
+import styled from 'styled-components';
+import { DocViewerContext } from '../state';
+import { nextDocument, previousDocument } from '../state/actions';
+import { IStyledProps } from '../types';
+import { ButtonSecondary } from './common/Button';
+import { NextDocIcon, PrevDocIcon } from './icons';
 
 export const DocumentNav: FC<{}> = () => {
   const {
@@ -16,8 +16,8 @@ export const DocumentNav: FC<{}> = () => {
 
   let fileName = currentDocument.uri;
 
-  const splitURL = fileName.split("/");
-  if (splitURL.length) {
+  const splitURL = fileName?.split('/');
+  if (splitURL?.length) {
     fileName = splitURL[splitURL.length - 1];
   }
 
